@@ -1,4 +1,4 @@
-```python
+
 import streamlit as st
 import pickle
 import numpy as np
@@ -886,4 +886,4 @@ if predict:
         "Educational machine-learning application. "
         "Not intended for clinical diagnosis."
     )
-```
+
