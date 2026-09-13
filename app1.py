@@ -331,17 +331,14 @@ if predict:
     # MODEL PREDICTION
     # ======================================================
 
+
     prediction = int(model.predict(scaled_input)[0])
 
     probability = model.predict_proba(scaled_input)[0]
 
-    disease_probability = float(probability[1] * 100)
-
-    no_disease_probability = float(probability[0] * 100)
-
-    confidence = float(np.max(probability) * 100)
-
-
+    disease_probability = float(probability[1]) * 100
+    no_disease_probability = float(probability[0]) * 100
+    confidence = float(np.max(probability)) * 100
     # ======================================================
     # RESULT
     # ======================================================
@@ -392,29 +389,24 @@ else:
 
     m1, m2, m3 = st.columns(3)
 
-
     with m1:
-
         st.metric(
-            "Heart Disease Probability",
-            f"{disease_probability:.2f}%"
+        "Heart Disease Probability",
+        f"{disease_probability:.2f}%"
         )
-
 
     with m2:
-
         st.metric(
-            "No Disease Probability",
-            f"{no_disease_probability:.2f}%"
+        "No Disease Probability",
+        f"{no_disease_probability:.2f}%"
         )
-
 
     with m3:
-
         st.metric(
-            "Prediction Confidence",
-            f"{confidence:.2f}%"
+        "Prediction Confidence",
+        f"{confidence:.2f}%"
         )
+    
 
 
     st.progress(
