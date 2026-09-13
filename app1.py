@@ -1,4 +1,4 @@
-
+```python
 import streamlit as st
 import pickle
 import numpy as np
@@ -63,24 +63,25 @@ st.markdown(
         font-size: 30px;
         font-weight: 700;
     }
+
     .risk-low {
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-    background-color: #DCFCE7;
-    color: #14532D;
-    border: 2px solid #16A34A;
-    font-weight: 700;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        background-color: #DCFCE7;
+        color: #14532D;
+        border: 2px solid #16A34A;
+        font-weight: 700;
     }
 
     .risk-high {
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-    background-color: #FEE2E2;
-    color: #7F1D1D;
-    border: 2px solid #DC2626;
-    font-weight: 700;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        background-color: #FEE2E2;
+        color: #7F1D1D;
+        border: 2px solid #DC2626;
+        font-weight: 700;
     }
 
     </style>
@@ -331,7 +332,6 @@ if predict:
     # MODEL PREDICTION
     # ======================================================
 
-
     prediction = int(model.predict(scaled_input)[0])
 
     probability = model.predict_proba(scaled_input)[0]
@@ -339,6 +339,8 @@ if predict:
     disease_probability = float(probability[1]) * 100
     no_disease_probability = float(probability[0]) * 100
     confidence = float(np.max(probability)) * 100
+
+
     # ======================================================
     # RESULT
     # ======================================================
@@ -346,36 +348,44 @@ if predict:
     st.header("📌 Prediction")
 
     if prediction == 0:
-        st.markdown("""
-        <div style="
-        background-color: #D1FAE5;
-        color: #065F46;
-        padding: 20px;
-        border-radius: 12px;
-        text-align: center;
-        font-size: 22px;
-        font-weight: bold;
-        border: 2px solid #10B981;
-    ">
-        ✅ Low Risk of Heart Disease
-    </div>
-    """, unsafe_allow_html=True)
 
-else:
-    st.markdown("""
-    <div style="
-        background-color: #FEE2E2;
-        color: #991B1B;
-        padding: 20px;
-        border-radius: 12px;
-        text-align: center;
-        font-size: 22px;
-        font-weight: bold;
-        border: 2px solid #EF4444;
-    ">
-        ⚠️ High Risk of Heart Disease
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="
+                background-color: #DCFCE7;
+                color: #14532D;
+                padding: 20px;
+                border-radius: 12px;
+                text-align: center;
+                font-size: 22px;
+                font-weight: bold;
+                border: 2px solid #16A34A;
+            ">
+                ✅ Low Risk of Heart Disease
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    else:
+
+        st.markdown(
+            """
+            <div style="
+                background-color: #FEE2E2;
+                color: #7F1D1D;
+                padding: 20px;
+                border-radius: 12px;
+                text-align: center;
+                font-size: 22px;
+                font-weight: bold;
+                border: 2px solid #DC2626;
+            ">
+                ⚠️ High Risk of Heart Disease
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
     st.write("")
@@ -389,28 +399,37 @@ else:
 
     m1, m2, m3 = st.columns(3)
 
+
     with m1:
+
         st.metric(
-        "Heart Disease Probability",
-        f"{disease_probability:.2f}%"
+            "Heart Disease Probability",
+            f"{disease_probability:.2f}%"
         )
+
 
     with m2:
+
         st.metric(
-        "No Disease Probability",
-        f"{no_disease_probability:.2f}%"
+            "No Disease Probability",
+            f"{no_disease_probability:.2f}%"
         )
+
 
     with m3:
-        st.metric(
-        "Prediction Confidence",
-        f"{confidence:.2f}%"
-        )
-    
 
+        st.metric(
+            "Prediction Confidence",
+            f"{confidence:.2f}%"
+        )
+
+
+    # ======================================================
+    # PROGRESS BAR
+    # ======================================================
 
     st.progress(
-        int(disease_probability)
+        min(max(int(disease_probability), 0), 100)
     )
 
 
@@ -490,7 +509,9 @@ else:
     )
 
 
-    # Handle different SHAP versions
+    # ======================================================
+    # HANDLE DIFFERENT SHAP VERSIONS
+    # ======================================================
 
     if isinstance(shap_values, list):
 
@@ -745,6 +766,7 @@ else:
 
     display_results = model_results.copy()
 
+
     for column in [
         "Accuracy",
         "Precision",
@@ -864,3 +886,4 @@ else:
         "Educational machine-learning application. "
         "Not intended for clinical diagnosis."
     )
+```
