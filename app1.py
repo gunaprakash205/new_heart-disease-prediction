@@ -345,29 +345,37 @@ if predict:
 
     st.header("📌 Prediction")
 
-    if prediction[0] == 1:
+    if prediction == 0:
+    st.markdown("""
+    <div style="
+        background-color: #D1FAE5;
+        color: #065F46;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        border: 2px solid #10B981;
+    ">
+        ✅ Low Risk of Heart Disease
+    </div>
+    """, unsafe_allow_html=True)
 
-        st.markdown(
-            """
-            <div class="risk-high">
-                <h2>⚠️ Model Prediction: Higher Risk</h2>
-                <p>The model classified this input as Class 1.</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-    else:
-
-        st.markdown(
-            """
-            <div class="risk-low">
-                <h2>✅ Model Prediction: Lower Risk</h2>
-                <p>The model classified this input as Class 0.</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+else:
+    st.markdown("""
+    <div style="
+        background-color: #FEE2E2;
+        color: #991B1B;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        border: 2px solid #EF4444;
+    ">
+        ⚠️ High Risk of Heart Disease
+    </div>
+    """, unsafe_allow_html=True)
 
 
     st.write("")
