@@ -346,8 +346,8 @@ if predict:
     st.header("📌 Prediction")
 
     if prediction == 0:
-    st.markdown("""
-    <div style="
+        st.markdown("""
+        <div style="
         background-color: #D1FAE5;
         color: #065F46;
         padding: 20px;
