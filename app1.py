@@ -63,21 +63,24 @@ st.markdown(
         font-size: 30px;
         font-weight: 700;
     }
-
     .risk-low {
-        padding: 25px;
-        border-radius: 15px;
-        text-align: center;
-        background-color: #e9f7ef;
-        border: 1px solid #b7e4c7;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: #DCFCE7;
+    color: #14532D;
+    border: 2px solid #16A34A;
+    font-weight: 700;
     }
 
     .risk-high {
-        padding: 25px;
-        border-radius: 15px;
-        text-align: center;
-        background-color: #fdecec;
-        border: 1px solid #f5b5b5;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: #FEE2E2;
+    color: #7F1D1D;
+    border: 2px solid #DC2626;
+    font-weight: 700;
     }
 
     </style>
@@ -328,15 +331,15 @@ if predict:
     # MODEL PREDICTION
     # ======================================================
 
-    prediction = model.predict(scaled_input)
+    prediction = int(model.predict(scaled_input)[0])
 
-    probability = model.predict_proba(scaled_input)
+    probability = model.predict_proba(scaled_input)[0]
 
-    disease_probability = probability[0][1] * 100
+    disease_probability = float(probability[1] * 100)
 
-    no_disease_probability = probability[0][0] * 100
+    no_disease_probability = float(probability[0] * 100)
 
-    confidence = np.max(probability) * 100
+    confidence = float(np.max(probability) * 100)
 
 
     # ======================================================
